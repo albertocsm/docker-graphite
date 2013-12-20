@@ -15,12 +15,13 @@ RUN cp -f /opt/graphite/conf/carbon.conf.example /opt/graphite/conf/carbon.conf 
     cp -f /opt/graphite/webapp/graphite/local_settings.py.example \
           /opt/graphite/webapp/graphite/local_settings.py && \
     cp -f /tmp/src/*.conf /opt/graphite/conf/ && \
-    mkdir -p /opt/graphite/storage/log/webapp && \
-    chown -R www-data:www-data /opt/graphite
+    mkdir -p /opt/graphite/storage/log/webapp
 
 # Setup DB for graphite webapp
 RUN cd /opt/graphite/webapp/graphite && \
-    python manage.py syncdb --noinput
+    python manage.py syncdb --noinput && \
+
+RUN chown -R www-data:www-data /opt/graphite
 
 # Install and configure statsd
 RUN git clone https://github.com/etsy/statsd.git /opt/statsd && \
