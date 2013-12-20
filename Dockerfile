@@ -19,7 +19,7 @@ RUN cp -f /opt/graphite/conf/carbon.conf.example /opt/graphite/conf/carbon.conf 
 
 # Setup DB for graphite webapp
 RUN cd /opt/graphite/webapp/graphite && \
-    python manage.py syncdb --noinput && \
+    python manage.py syncdb --noinput
 
 RUN chown -R www-data:www-data /opt/graphite
 
